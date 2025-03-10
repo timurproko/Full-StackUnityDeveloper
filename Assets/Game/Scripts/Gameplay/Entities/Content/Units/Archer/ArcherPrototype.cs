@@ -50,7 +50,7 @@ namespace SampleGame
                 duration = _fireCooldown
             };
 
-            world.GetPool<BowWeapon>().Add(entity) = new BowWeapon
+            world.GetPool<RangeWeapon>().Add(entity) = new RangeWeapon
             {
                 Projectile = _projectile
             };

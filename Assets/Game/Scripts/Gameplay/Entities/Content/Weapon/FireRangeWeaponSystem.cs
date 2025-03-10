@@ -3,12 +3,12 @@ using Leopotam.EcsLite.Di;
 
 namespace SampleGame
 {
-    public sealed class FireMeleeSystem : IEcsRunSystem
+    public sealed class FireRangeWeaponSystem : IEcsRunSystem
     {
         private readonly EcsEventInject<AnimationEvent> _events;
         private readonly EcsWorldInject _world;
-        private readonly EcsPoolInject<MeleeWeapon> _meleeWeapons;
-        private readonly EcsUseCaseInject<FireMeleeUseCase> _fireMeleeUseCase;
+        private readonly EcsPoolInject<RangeWeapon> _rangeWeapons;
+        private readonly EcsUseCaseInject<FireProjectileUseCase> _fireProjectileUseCase;
 
         public void Run(IEcsSystems systems)
         {
@@ -17,11 +17,11 @@ namespace SampleGame
                 if (!animationEvent.entity.Unpack(_world.Value, out int entity))
                     continue;
 
-                if (!_meleeWeapons.Value.Has(entity))
+                if (!_rangeWeapons.Value.Has(entity))
                     continue;
 
-                int damage = _meleeWeapons.Value.Get(entity).Damage;
-                _fireMeleeUseCase.Value.Fire(entity, damage);
+                ref var bowWeapon = ref _rangeWeapons.Value.Get(entity);
+                _fireProjectileUseCase.Value.Fire(entity, bowWeapon.Projectile);
             }
         }
     }

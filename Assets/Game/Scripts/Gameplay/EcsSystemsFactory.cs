@@ -55,9 +55,9 @@ namespace SampleGame
                 .Add(new UnitFireAISystem())
                 
                 //Weapon:
-                .Add(new FireMeleeSystem())
+                .Add(new FireMeleeWeaponSystem())
                 .Add(new ProjectileInitializer())
-                .Add(new FireProjectileSystem())
+                .Add(new FireRangeWeaponSystem())
                 .Add(new ProjectileCollisionSystem())
                 
                 //Other:
