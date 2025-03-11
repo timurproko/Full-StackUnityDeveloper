@@ -8,6 +8,7 @@ using UnityEngine;
 using Atomic.Entities;
 using System;
 using Atomic.Elements;
+using Modules.FSM;
 
 namespace Game.Gameplay
 {
@@ -39,9 +40,12 @@ namespace Game.Gameplay
 		public const int FireRequest = 1469079819; // IRequest
 		public const int FireCondition = -280402907; // IFunction<bool>
 		public const int FireEvent = -1683597082; // IEvent
+		public const int Waypoints = 66265670; // Transform[]
+		public const int WaypointIndex = 998804656; // IReactiveVariable<int>
 		public const int Trigger = -707381567; // TriggerEventReceiver
 		public const int MeshRenderer = 1670531983; // Renderer
 		public const int Animator = -1714818978; // Animator
+		public const int StateMachine = 847119820; // IStateMachine<StateName>
 
 
 		///Tag Extensions
@@ -468,6 +472,46 @@ namespace Game.Gameplay
 		public static void SetFireEvent(this IEntity obj, IEvent value) => obj.SetValue(FireEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Transform[] GetWaypoints(this IEntity obj) => obj.GetValueUnsafe<Transform[]>(Waypoints);
+
+		public static ref Transform[] RefWaypoints(this IEntity obj) => ref obj.GetValueUnsafe<Transform[]>(Waypoints);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetWaypoints(this IEntity obj, out Transform[] value) => obj.TryGetValueUnsafe(Waypoints, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddWaypoints(this IEntity obj, Transform[] value) => obj.AddValue(Waypoints, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasWaypoints(this IEntity obj) => obj.HasValue(Waypoints);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelWaypoints(this IEntity obj) => obj.DelValue(Waypoints);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetWaypoints(this IEntity obj, Transform[] value) => obj.SetValue(Waypoints, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IReactiveVariable<int> GetWaypointIndex(this IEntity obj) => obj.GetValueUnsafe<IReactiveVariable<int>>(WaypointIndex);
+
+		public static ref IReactiveVariable<int> RefWaypointIndex(this IEntity obj) => ref obj.GetValueUnsafe<IReactiveVariable<int>>(WaypointIndex);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetWaypointIndex(this IEntity obj, out IReactiveVariable<int> value) => obj.TryGetValueUnsafe(WaypointIndex, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddWaypointIndex(this IEntity obj, IReactiveVariable<int> value) => obj.AddValue(WaypointIndex, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasWaypointIndex(this IEntity obj) => obj.HasValue(WaypointIndex);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelWaypointIndex(this IEntity obj) => obj.DelValue(WaypointIndex);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetWaypointIndex(this IEntity obj, IReactiveVariable<int> value) => obj.SetValue(WaypointIndex, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static TriggerEventReceiver GetTrigger(this IEntity obj) => obj.GetValueUnsafe<TriggerEventReceiver>(Trigger);
 
 		public static ref TriggerEventReceiver RefTrigger(this IEntity obj) => ref obj.GetValueUnsafe<TriggerEventReceiver>(Trigger);
@@ -526,5 +570,25 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetAnimator(this IEntity obj, Animator value) => obj.SetValue(Animator, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IStateMachine<StateName> GetStateMachine(this IEntity obj) => obj.GetValueUnsafe<IStateMachine<StateName>>(StateMachine);
+
+		public static ref IStateMachine<StateName> RefStateMachine(this IEntity obj) => ref obj.GetValueUnsafe<IStateMachine<StateName>>(StateMachine);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetStateMachine(this IEntity obj, out IStateMachine<StateName> value) => obj.TryGetValueUnsafe(StateMachine, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddStateMachine(this IEntity obj, IStateMachine<StateName> value) => obj.AddValue(StateMachine, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasStateMachine(this IEntity obj) => obj.HasValue(StateMachine);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelStateMachine(this IEntity obj) => obj.DelValue(StateMachine);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetStateMachine(this IEntity obj, IStateMachine<StateName> value) => obj.SetValue(StateMachine, value);
     }
 }

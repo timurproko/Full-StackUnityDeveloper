@@ -6,26 +6,13 @@ namespace Game.Gameplay
 {
     public sealed class CharacterCoreInstaller : SceneEntityInstaller
     {
-        [SerializeField]
-        private float _moveSpeed = 3;
-
-        [SerializeField]
-        private float _angularSpeed = 15;
-
-        [SerializeField]
-        private int _health = 3;
-
-        [SerializeField]
-        private GameObject _gameObject;
-
-        [SerializeField]
-        private Transform _transform;
-
-        [SerializeField]
-        private SceneEntity _initialWeapon;
-
-        [SerializeField]
-        private TeamType _team;
+        [SerializeField] private float _moveSpeed = 3;
+        [SerializeField] private float _angularSpeed = 15;
+        [SerializeField] private int _health = 3;
+        [SerializeField] private GameObject _gameObject;
+        [SerializeField] private Transform _transform;
+        [SerializeField] private SceneEntity _initialWeapon;
+        [SerializeField] private TeamType _team;
 
         public override void Install(IEntity entity)
         {

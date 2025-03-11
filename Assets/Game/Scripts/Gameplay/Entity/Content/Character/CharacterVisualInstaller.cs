@@ -5,23 +5,12 @@ namespace Game.Gameplay
 {
     public sealed class CharacterVisualInstaller : SceneEntityInstaller
     {
-        [SerializeField]
-        private Renderer _meshRenderer;
-
-        [SerializeField]
-        private Animator _animator;
-
-        [SerializeField]
-        private ParticleSystem _bloodVfx;
-
-        [SerializeField]
-        private AudioSource _audioSource;
-
-        [SerializeField]
-        private AudioClip _damageClip;
-
-        [SerializeField]
-        private AudioClip _deathClip;
+        [SerializeField] private Renderer _meshRenderer;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private ParticleSystem _bloodVfx;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _damageClip;
+        [SerializeField] private AudioClip _deathClip;
 
         public override void Install(IEntity entity)
         {
