@@ -25,6 +25,7 @@ namespace Game.Gameplay
 		public const int MoveRequest = 608421636; // IRequest<Vector3>
 		public const int MoveEvent = 735308719; // IEvent<Vector3>
 		public const int MoveSpeed = 526065662; // IValue<float>
+		public const int MovePoint = -1479011796; // IVariable<Vector3>
 		public const int LookRequest = -266010916; // IRequest<Vector3>
 		public const int RotateSpeed = -1838353354; // IValue<float>
 		public const int Health = -915003867; // Health
@@ -170,6 +171,26 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetMoveSpeed(this IEntity obj, IValue<float> value) => obj.SetValue(MoveSpeed, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IVariable<Vector3> GetMovePoint(this IEntity obj) => obj.GetValueUnsafe<IVariable<Vector3>>(MovePoint);
+
+		public static ref IVariable<Vector3> RefMovePoint(this IEntity obj) => ref obj.GetValueUnsafe<IVariable<Vector3>>(MovePoint);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetMovePoint(this IEntity obj, out IVariable<Vector3> value) => obj.TryGetValueUnsafe(MovePoint, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddMovePoint(this IEntity obj, IVariable<Vector3> value) => obj.AddValue(MovePoint, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasMovePoint(this IEntity obj) => obj.HasValue(MovePoint);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelMovePoint(this IEntity obj) => obj.DelValue(MovePoint);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetMovePoint(this IEntity obj, IVariable<Vector3> value) => obj.SetValue(MovePoint, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IRequest<Vector3> GetLookRequest(this IEntity obj) => obj.GetValueUnsafe<IRequest<Vector3>>(LookRequest);

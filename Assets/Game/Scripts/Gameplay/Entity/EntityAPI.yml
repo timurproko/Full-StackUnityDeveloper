@@ -25,6 +25,7 @@ values:
 - MoveRequest: IRequest<Vector3>
 - MoveEvent: IEvent<Vector3>
 - MoveSpeed: IValue<float>
+- MovePoint: IVariable<Vector3>
 #Rotation
 - LookRequest: IRequest<Vector3>
 - RotateSpeed: IValue<float>

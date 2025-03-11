@@ -7,6 +7,6 @@ namespace Game.Gameplay
         Patrol = 2,
         Attack = 3,
         Hold = 4,
-        Chase = 5,
+        Follow = 5,
     }
 }
