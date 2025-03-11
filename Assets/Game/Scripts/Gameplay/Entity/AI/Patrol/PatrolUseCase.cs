@@ -12,6 +12,9 @@ namespace Game.Gameplay
         public static void PatrolWaypoints(in IEntity entity, in float stoppingDistance)
         {
             Vector3[] waypoints = entity.GetWaypoints();
+            if (waypoints == null || waypoints.Length == 0)
+                return;
+            
             IReactiveVariable<int> waypointIndex = entity.GetWaypointIndex();
 
             int index = waypointIndex.Value;
@@ -35,20 +38,19 @@ namespace Game.Gameplay
         public static void AddWaypoints(in IEntity entity, in Vector3 point)
         {
             List<Vector3> waypoints = entity.GetWaypoints().ToList();
-
-            if (waypoints.Count > 0)
-                waypoints[0] = entity.GetTransform().position;
-            else
+            
+            if (waypoints.Count == 0) 
                 waypoints.Add(entity.GetTransform().position);
-
+            
             waypoints.Add(point);
             entity.SetWaypoints(waypoints.ToArray());
         }
 
-        
+
         public static void ClearWaypoints(in IEntity entity)
         {
             entity.SetWaypoints(Array.Empty<Vector3>());
+            entity.GetWaypointIndex().Value = 0;
         }
     }
 }

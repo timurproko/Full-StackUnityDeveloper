@@ -1038,9 +1038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stoppingDistance: 2
   _attackingDistance: 5
-  _waypoints:
-  - {fileID: 1076749211}
-  - {fileID: 171793841}
   _sensorInstaller:
     _layerMask:
       serializedVersion: 2
