@@ -575,6 +575,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 711934099}
     m_Modifications:
     - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: installInEditMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: installers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -653,6 +657,10 @@ PrefabInstance:
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Name
       value: Character (Red)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_IsActive
@@ -771,6 +779,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 711934099}
     m_Modifications:
     - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: installInEditMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: installers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -851,6 +863,10 @@ PrefabInstance:
       value: Character (Red)
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -890,7 +906,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: _valueCapacity
-      value: 19
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: installInEditMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: installers.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 116005252871134220, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: installers.Array.data[2]
@@ -944,6 +968,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5230834254120851125, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: _cooldown._duration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6365486697565791777, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: _sensorInstaller._radius
       value: 7
@@ -951,6 +979,10 @@ PrefabInstance:
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Name
       value: Character (Blue)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1004,10 +1036,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a51b415fb954987aff79e97572853e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stoppingDistance: 1
+  _stoppingDistance: 2
+  _attackingDistance: 5
   _waypoints:
   - {fileID: 1076749211}
   - {fileID: 171793841}
+  _sensorInstaller:
+    _layerMask:
+      serializedVersion: 2
+      m_Bits: 128
+    _radius: 8
+    _center: {fileID: 7613773963679934946}
+    _bufferSize: 32
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

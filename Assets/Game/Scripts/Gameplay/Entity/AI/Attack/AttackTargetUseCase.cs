@@ -10,7 +10,7 @@ namespace Game.Gameplay
             if (entity == null || target == null)
                 return false;
 
-            Vector2 targetVector = VectorUseCase.DistanceVector(entity, target);
+            Vector3 targetVector = VectorUseCase.DistanceVector(entity, target);
             if (targetVector.sqrMagnitude > attackDistance * attackDistance)
                 return false;
 

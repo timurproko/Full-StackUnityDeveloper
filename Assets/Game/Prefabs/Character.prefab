@@ -613,7 +613,6 @@ MonoBehaviour:
   installers:
   - {fileID: 2025560285788460330}
   - {fileID: 6620937699476238798}
-  - {fileID: 0}
   _onlySelectedGizmos: 0
   _onlyEditModeGizmos: 0
   _tagCapacity: 2

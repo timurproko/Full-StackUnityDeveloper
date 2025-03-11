@@ -10,7 +10,7 @@ namespace Game.Gameplay
             if (entity == null || target == null)
                 return false;
             
-            Vector2 distanceVector = VectorUseCase.DistanceVector(entity, target);
+            Vector3 distanceVector = VectorUseCase.DistanceVector(entity, target);
             distanceVector.y = 0;
             entity.GetLookRequest().Invoke(distanceVector);
             return true;
