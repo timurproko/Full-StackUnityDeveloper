@@ -1,4 +1,3 @@
-using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -6,9 +5,7 @@ namespace Game.Gameplay
 {
     public static class MoveToPointUseCase
     {
-        private const float STOPPING_DISTANCE = 0.1f;
-
-        public static bool Move(in IEntity entity)
+        public static bool Move(in IEntity entity, float stoppingDistance)
         {
             if (entity == null)
                 return false;
@@ -21,7 +18,7 @@ namespace Game.Gameplay
 
             Vector3 distanceVector = targetPosition - currentPosition;
 
-            Vector3 moveDirection = distanceVector.sqrMagnitude <= STOPPING_DISTANCE
+            Vector3 moveDirection = distanceVector.sqrMagnitude <= stoppingDistance * stoppingDistance
                 ? Vector3.zero
                 : distanceVector.normalized;
 

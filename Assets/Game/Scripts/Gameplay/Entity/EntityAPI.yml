@@ -46,7 +46,7 @@ values:
 - FireCondition: IFunction<bool>
 - FireEvent: IEvent
 #Patrol
-- Waypoints: Transform[]
+- Waypoints: Vector3[]
 - WaypointIndex: IReactiveVariable<int>
 #Physics
 - Trigger: TriggerEventReceiver

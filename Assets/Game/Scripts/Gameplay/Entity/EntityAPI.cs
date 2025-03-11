@@ -41,7 +41,7 @@ namespace Game.Gameplay
 		public const int FireRequest = 1469079819; // IRequest
 		public const int FireCondition = -280402907; // IFunction<bool>
 		public const int FireEvent = -1683597082; // IEvent
-		public const int Waypoints = 66265670; // Transform[]
+		public const int Waypoints = 66265670; // Vector3[]
 		public const int WaypointIndex = 998804656; // IReactiveVariable<int>
 		public const int Trigger = -707381567; // TriggerEventReceiver
 		public const int MeshRenderer = 1670531983; // Renderer
@@ -493,15 +493,15 @@ namespace Game.Gameplay
 		public static void SetFireEvent(this IEntity obj, IEvent value) => obj.SetValue(FireEvent, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Transform[] GetWaypoints(this IEntity obj) => obj.GetValueUnsafe<Transform[]>(Waypoints);
+		public static Vector3[] GetWaypoints(this IEntity obj) => obj.GetValueUnsafe<Vector3[]>(Waypoints);
 
-		public static ref Transform[] RefWaypoints(this IEntity obj) => ref obj.GetValueUnsafe<Transform[]>(Waypoints);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetWaypoints(this IEntity obj, out Transform[] value) => obj.TryGetValueUnsafe(Waypoints, out value);
+		public static ref Vector3[] RefWaypoints(this IEntity obj) => ref obj.GetValueUnsafe<Vector3[]>(Waypoints);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void AddWaypoints(this IEntity obj, Transform[] value) => obj.AddValue(Waypoints, value);
+		public static bool TryGetWaypoints(this IEntity obj, out Vector3[] value) => obj.TryGetValueUnsafe(Waypoints, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddWaypoints(this IEntity obj, Vector3[] value) => obj.AddValue(Waypoints, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasWaypoints(this IEntity obj) => obj.HasValue(Waypoints);
@@ -510,7 +510,7 @@ namespace Game.Gameplay
 		public static bool DelWaypoints(this IEntity obj) => obj.DelValue(Waypoints);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetWaypoints(this IEntity obj, Transform[] value) => obj.SetValue(Waypoints, value);
+		public static void SetWaypoints(this IEntity obj, Vector3[] value) => obj.SetValue(Waypoints, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static IReactiveVariable<int> GetWaypointIndex(this IEntity obj) => obj.GetValueUnsafe<IReactiveVariable<int>>(WaypointIndex);

@@ -12,10 +12,10 @@ namespace Game.Gameplay
                 onUpdate: _ => { });
         }
 
-        public static IState CreateMoveState(IEntity entity)
+        public static IState CreateMoveState(IEntity entity, float stoppingDistance)
         {
             return new BaseState(
-                onUpdate: _ => { MoveToPointUseCase.Move(entity); });
+                onUpdate: _ => { MoveToPointUseCase.Move(entity, stoppingDistance); });
         }
 
         public static IState CreatePatrolState(IEntity entity, float stoppingDistance)

@@ -9,7 +9,7 @@ namespace Game.Gameplay
     {
         [SerializeField] private float _stoppingDistance = 1.5f;
         [SerializeField] private float _attackingDistance = 5f;
-        [SerializeField] private Transform[] _waypoints;
+        // [SerializeField] private Transform[] _waypoints;
         [SerializeField] private TargetSensorInstaller _sensorInstaller;
 
         private IStateMachine<StateName> _stateMachine;
@@ -20,7 +20,7 @@ namespace Game.Gameplay
             _stateMachine = CreateStateMachine(entity);
 
             entity.AddTarget(new ReactiveVariable<IEntity>());
-            entity.AddWaypoints(_waypoints);
+            entity.AddWaypoints(new Vector3[] { });
             entity.AddWaypointIndex(new ReactiveInt());
             entity.AddStateMachine(_stateMachine);
             entity.AddMovePoint(new ReactiveVariable<Vector3>());
@@ -34,8 +34,8 @@ namespace Game.Gameplay
         {
             return new StateMachine<StateName>(StateName.Idle,
                 (StateName.Idle, StateFactory.CreateIdleState(entity)),
-                (StateName.Move, StateFactory.CreateMoveState(entity)),
-                (StateName.Patrol, StateFactory.CreatePatrolState(entity, _stoppingDistance)),
+                (StateName.Move, StateFactory.CreateMoveState(entity, 0.1f)),
+                (StateName.Patrol, StateFactory.CreatePatrolState(entity, 0.1f)),
                 (StateName.Attack, StateFactory.CreateAttackState(entity, _attackingDistance, _stoppingDistance)),
                 (StateName.Hold, StateFactory.CreateHoldState(entity, _attackingDistance)),
                 (StateName.Follow, StateFactory.CreateChaseState(entity, _stoppingDistance))
