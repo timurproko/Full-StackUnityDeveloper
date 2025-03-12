@@ -7,8 +7,8 @@ namespace Game.Gameplay
     {
         public static void Stop(IEntity entity)
         {
-            PatrolUseCase.ClearWaypoints(entity);
             entity.GetStateMachine().ChangeState(StateName.Idle);
+            PatrolUseCase.ClearWaypoints(entity);
         }
 
         public static void Hold(IEntity entity, bool additive)

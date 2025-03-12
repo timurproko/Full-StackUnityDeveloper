@@ -24,20 +24,18 @@ namespace Game.Gameplay
             );
         }
 
-        public static IBehaviourNode CreatePatrolSequence(IEntity entity, float stoppingDistance, float attackingDistance)
+        public static IBehaviourNode CreatePatrolSequence(IEntity entity, float stoppingDistance,
+            float attackingDistance)
         {
             return new BehaviourNodeSelector(
-                new BehaviourNodeAborter( // Abort patrol if enemy exists
-                    new BehaviourNodeSequence(
-                        new BehaviourNodeCondition(() => entity.GetTarget().Value == null),
-                        new PatrolNode(entity, stoppingDistance)
-                    ),
-                    () => entity.GetTarget().Value != null
+                new BehaviourNodeSequence(
+                    new BehaviourNodeCondition(() => entity.GetTarget().Value == null),
+                    new PatrolNode(entity, stoppingDistance)
                 ),
-                new BehaviourNodeAborter( // Abort attack if not looking at target
+                new BehaviourNodeAborter(
                     new BehaviourNodeSequence(
+                        new BehaviourNodeCondition(() => entity.GetTarget().Value != null),
                         new LookAtNode(entity),
-                        new BehaviourNodeCondition(() => LookAtUseCase.LookAt(entity, entity.GetTarget().Value)),
                         new AttackNode(entity, attackingDistance)
                     ),
                     () => !LookAtUseCase.LookAt(entity, entity.GetTarget().Value)

@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stoppingDistance: 2
-  _attackingDistance: 6
+  _attackingDistance: 6.1
   _sensorInstaller:
     _layerMask:
       serializedVersion: 2

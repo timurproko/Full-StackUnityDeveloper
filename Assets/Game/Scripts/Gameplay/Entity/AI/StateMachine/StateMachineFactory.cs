@@ -7,7 +7,7 @@ namespace Game.Gameplay
 {
     public static class StateMachineFactory
     {
-        public static IState CreateIdleState(IEntity _)
+        public static IState CreateIdleState(IEntity entity)
         {
             return new BaseState(
                 onUpdate: _ => { });
