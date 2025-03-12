@@ -4,11 +4,12 @@
 
 using Atomic.Entities;
 using System.Runtime.CompilerServices;
+using System;
 using UnityEngine;
 using Atomic.Entities;
-using System;
 using Atomic.Elements;
 using Modules.FSM;
+using Modules.BehaviourTree;
 
 namespace Game.Gameplay
 {
@@ -47,6 +48,7 @@ namespace Game.Gameplay
 		public const int MeshRenderer = 1670531983; // Renderer
 		public const int Animator = -1714818978; // Animator
 		public const int StateMachine = 847119820; // IStateMachine<StateName>
+		public const int BehaviourTree = 1764777385; // IBehaviourNode
 
 
 		///Tag Extensions
@@ -611,5 +613,25 @@ namespace Game.Gameplay
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void SetStateMachine(this IEntity obj, IStateMachine<StateName> value) => obj.SetValue(StateMachine, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static IBehaviourNode GetBehaviourTree(this IEntity obj) => obj.GetValueUnsafe<IBehaviourNode>(BehaviourTree);
+
+		public static ref IBehaviourNode RefBehaviourTree(this IEntity obj) => ref obj.GetValueUnsafe<IBehaviourNode>(BehaviourTree);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetBehaviourTree(this IEntity obj, out IBehaviourNode value) => obj.TryGetValueUnsafe(BehaviourTree, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void AddBehaviourTree(this IEntity obj, IBehaviourNode value) => obj.AddValue(BehaviourTree, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasBehaviourTree(this IEntity obj) => obj.HasValue(BehaviourTree);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelBehaviourTree(this IEntity obj) => obj.DelValue(BehaviourTree);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetBehaviourTree(this IEntity obj, IBehaviourNode value) => obj.SetValue(BehaviourTree, value);
     }
 }

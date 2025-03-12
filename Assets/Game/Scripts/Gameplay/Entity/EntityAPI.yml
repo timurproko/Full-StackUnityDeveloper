@@ -7,11 +7,12 @@ className: EntityAPI
 directory: Assets/Game/Scripts/Gameplay/Entity/
  
 imports:
+- System
 - UnityEngine
 - Atomic.Entities
-- System
 - Atomic.Elements
 - Modules.FSM
+- Modules.BehaviourTree
 
 tags:
 - Damageable
@@ -55,3 +56,4 @@ values:
 - Animator: Animator
 #AI
 - StateMachine: IStateMachine<StateName>
+- BehaviourTree: IBehaviourNode

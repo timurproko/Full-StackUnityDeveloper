@@ -1,5 +1,6 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using Modules.BehaviourTree;
 using Modules.FSM;
 using UnityEngine;
 
@@ -9,25 +10,36 @@ namespace Game.Gameplay
     {
         [SerializeField] private float _stoppingDistance = 1.5f;
         [SerializeField] private float _attackingDistance = 5f;
-        // [SerializeField] private Transform[] _waypoints;
         [SerializeField] private TargetSensorInstaller _sensorInstaller;
 
         private IStateMachine<StateName> _stateMachine;
+        private IBehaviourNode _behaviourTree;
 
         public override void Install(IEntity entity)
         {
             _sensorInstaller.Install(entity);
             _stateMachine = CreateStateMachine(entity);
+            _behaviourTree = CreateBehaviourTree(entity);
 
             entity.AddTarget(new ReactiveVariable<IEntity>());
+            entity.AddMovePoint(new ReactiveVariable<Vector3>());
             entity.AddWaypoints(new Vector3[] { });
             entity.AddWaypointIndex(new ReactiveInt());
             entity.AddStateMachine(_stateMachine);
-            entity.AddMovePoint(new ReactiveVariable<Vector3>());
+            entity.AddBehaviourTree(_behaviourTree);
 
-            entity.WhenEnable(_stateMachine.OnEnter);
-            entity.WhenDisable(_stateMachine.OnExit);
-            entity.WhenFixedUpdate(_stateMachine.OnUpdate);
+            // entity.WhenEnable(_stateMachine.OnEnter);
+            // entity.WhenDisable(_stateMachine.OnExit);
+            // entity.WhenFixedUpdate(_stateMachine.OnUpdate);
+            entity.WhenFixedUpdate(deltaTime => _behaviourTree.Run(deltaTime));
+        }
+
+        private BehaviourNodeSequence CreateBehaviourTree(IEntity entity)
+        {
+            return new BehaviourNodeSequence(
+                new MoveNode(entity, _stoppingDistance),
+                new AttackNode(entity, _attackingDistance)
+            );
         }
 
         private IStateMachine<StateName> CreateStateMachine(IEntity entity)
