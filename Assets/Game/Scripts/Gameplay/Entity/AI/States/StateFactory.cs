@@ -1,6 +1,9 @@
 using Atomic.Entities;
+using Modules.BehaviourTree;
 using Modules.FSM;
+using Unity.VisualScripting;
 using UnityEngine;
+using IState = Modules.FSM.IState;
 
 namespace Game.Gameplay
 {
@@ -55,6 +58,14 @@ namespace Game.Gameplay
                     IEntity target = entity.GetTarget().Value;
                     FollowTargetUseCase.Follow(entity, target, stoppingDistance);
                 });
+        }
+
+        public static IState CreateBehaviourTreeState(IBehaviourNode behaviourTree)
+        {
+            return new BaseState(
+                onUpdate: deltaTime => behaviourTree.Run(deltaTime),
+                onExit: behaviourTree.Abort
+            );
         }
     }
 }

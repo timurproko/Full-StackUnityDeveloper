@@ -30,6 +30,7 @@ namespace Game.Gameplay
 
         public static void Attack(IEntity entity, RaycastHit hitPoint, bool additive)
         {
+            entity.GetMovePoint().Value = hitPoint.point;
             entity.GetStateMachine().ChangeState(StateName.Attack);
         }
 

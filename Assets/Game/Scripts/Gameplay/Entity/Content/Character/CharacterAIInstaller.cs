@@ -1,6 +1,5 @@
 using Atomic.Elements;
 using Atomic.Entities;
-using Modules.BehaviourTree;
 using Modules.FSM;
 using UnityEngine;
 
@@ -12,34 +11,20 @@ namespace Game.Gameplay
         [SerializeField] private float _attackingDistance = 5f;
         [SerializeField] private TargetSensorInstaller _sensorInstaller;
 
-        private IStateMachine<StateName> _stateMachine;
-        private IBehaviourNode _behaviourTree;
-
         public override void Install(IEntity entity)
         {
             _sensorInstaller.Install(entity);
-            _stateMachine = CreateStateMachine(entity);
-            _behaviourTree = CreateBehaviourTree(entity);
 
             entity.AddTarget(new ReactiveVariable<IEntity>());
             entity.AddMovePoint(new ReactiveVariable<Vector3>());
             entity.AddWaypoints(new Vector3[] { });
             entity.AddWaypointIndex(new ReactiveInt());
-            entity.AddStateMachine(_stateMachine);
-            entity.AddBehaviourTree(_behaviourTree);
 
-            // entity.WhenEnable(_stateMachine.OnEnter);
-            // entity.WhenDisable(_stateMachine.OnExit);
-            // entity.WhenFixedUpdate(_stateMachine.OnUpdate);
-            entity.WhenFixedUpdate(deltaTime => _behaviourTree.Run(deltaTime));
-        }
-
-        private BehaviourNodeSequence CreateBehaviourTree(IEntity entity)
-        {
-            return new BehaviourNodeSequence(
-                new MoveNode(entity, _stoppingDistance),
-                new AttackNode(entity, _attackingDistance)
-            );
+            var stateMachine = CreateStateMachine(entity);
+            entity.AddStateMachine(stateMachine);
+            entity.WhenEnable(stateMachine.OnEnter);
+            entity.WhenDisable(stateMachine.OnExit);
+            entity.WhenFixedUpdate(stateMachine.OnUpdate);
         }
 
         private IStateMachine<StateName> CreateStateMachine(IEntity entity)
@@ -48,25 +33,10 @@ namespace Game.Gameplay
                 (StateName.Idle, StateFactory.CreateIdleState(entity)),
                 (StateName.Move, StateFactory.CreateMoveState(entity, 0.1f)),
                 (StateName.Patrol, StateFactory.CreatePatrolState(entity, 0.1f)),
-                (StateName.Attack, StateFactory.CreateAttackState(entity, _attackingDistance, _stoppingDistance)),
+                (StateName.Attack, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateAttackSequence(entity, _stoppingDistance, _attackingDistance))),
                 (StateName.Hold, StateFactory.CreateHoldState(entity, _attackingDistance)),
                 (StateName.Follow, StateFactory.CreateChaseState(entity, _stoppingDistance))
             );
         }
     }
 }
-// private IAutoStateMachine<StateName> CreateStateMachine(IEntity entity)
-// {
-//     return new AutoStateMachine<StateName>(StateName.Patrol,
-//         new[]
-//         {
-//             (StateName.Patrol, StateFactory.CreatePatrolState(entity, _stoppingDistance)),
-//             (StateName.Attack, StateFactory.CreateAttackState(entity, _stoppingDistance))
-//         },
-//         new StateTransition<StateName>[]
-//         {
-//             new(StateName.Patrol, StateName.Attack, priority: 3, () => entity.GetTarget().Value != null, null),
-//             new(StateName.Attack, StateName.Patrol, () => entity.GetTarget().Value == null),
-//         }
-//     );
-// }
