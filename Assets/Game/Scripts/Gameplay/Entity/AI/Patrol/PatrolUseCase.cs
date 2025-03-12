@@ -9,12 +9,20 @@ namespace Game.Gameplay
 {
     public static class PatrolUseCase
     {
-        public static void PatrolWaypoints(in IEntity entity, in float stoppingDistance)
+        public static bool PatrolWaypoints(in IEntity entity, float stoppingDistance)
+        {
+            return PatrolWaypoints(entity, stoppingDistance, out _);
+        }
+
+        public static bool PatrolWaypoints(in IEntity entity, in float stoppingDistance, out bool reached)
         {
             Vector3[] waypoints = entity.GetWaypoints();
             if (waypoints == null || waypoints.Length == 0)
-                return;
-            
+            {
+                reached = false;
+                return false;
+            }
+
             IReactiveVariable<int> waypointIndex = entity.GetWaypointIndex();
 
             int index = waypointIndex.Value;
@@ -24,7 +32,9 @@ namespace Game.Gameplay
             Vector3 distance = currentWaypoint - characterPosition;
             distance.y = 0;
 
-            if (distance.sqrMagnitude <= stoppingDistance * stoppingDistance)
+            reached = distance.sqrMagnitude <= stoppingDistance * stoppingDistance;
+
+            if (reached)
             {
                 index = (index + 1) % waypoints.Length;
                 waypointIndex.Value = index;
@@ -33,15 +43,17 @@ namespace Game.Gameplay
             {
                 entity.GetMoveRequest().Invoke(distance.normalized);
             }
+
+            return true;
         }
 
         public static void AddWaypoints(in IEntity entity, in Vector3 point)
         {
             List<Vector3> waypoints = entity.GetWaypoints().ToList();
-            
-            if (waypoints.Count == 0) 
+
+            if (waypoints.Count == 0)
                 waypoints.Add(entity.GetTransform().position);
-            
+
             waypoints.Add(point);
             entity.SetWaypoints(waypoints.ToArray());
         }

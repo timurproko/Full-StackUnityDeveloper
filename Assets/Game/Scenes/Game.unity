@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Name
-      value: Character (Red)
+      value: Character (Red)3
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Layer
@@ -862,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Name
-      value: Character (Red)
+      value: Character (Red)1
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Layer
@@ -972,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Name
-      value: Character (Red)
+      value: Character (Red)2
       objectReference: {fileID: 0}
     - target: {fileID: 7896759888454424343, guid: f82db08d1eee94b9791aca8b635c4482, type: 3}
       propertyPath: m_Layer

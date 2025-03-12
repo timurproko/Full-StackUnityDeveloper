@@ -1,8 +1,6 @@
 using Atomic.Entities;
 using Modules.BehaviourTree;
 using Modules.FSM;
-using Unity.VisualScripting;
-using UnityEngine;
 using IState = Modules.FSM.IState;
 
 namespace Game.Gameplay
@@ -19,6 +17,17 @@ namespace Game.Gameplay
         {
             return new BaseState(
                 onUpdate: _ => { MoveToUseCase.Move(entity, stoppingDistance); });
+        }
+
+        public static IState CreateHoldState(IEntity entity, float attackingDistance)
+        {
+            return new BaseState(
+                onUpdate: _ =>
+                {
+                    IEntity target = entity.GetTarget().Value;
+                    LookAtUseCase.LookAt(entity, target);
+                    AttackTargetUseCase.Attack(entity, target, attackingDistance);
+                });
         }
 
         public static IState CreatePatrolState(IEntity entity, float stoppingDistance)
@@ -39,18 +48,7 @@ namespace Game.Gameplay
                 });
         }
 
-        public static IState CreateHoldState(IEntity entity, float attackingDistance)
-        {
-            return new BaseState(
-                onUpdate: _ =>
-                {
-                    IEntity target = entity.GetTarget().Value;
-                    LookAtUseCase.LookAt(entity, target);
-                    AttackTargetUseCase.Attack(entity, target, attackingDistance);
-                });
-        }
-
-        public static IState CreateChaseState(IEntity entity, float stoppingDistance)
+        public static IState CreateFollowState(IEntity entity, float stoppingDistance)
         {
             return new BaseState(
                 onUpdate: _ =>

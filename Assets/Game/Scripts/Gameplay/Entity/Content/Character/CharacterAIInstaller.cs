@@ -32,7 +32,7 @@ namespace Game.Gameplay
             return new StateMachine<StateName>(StateName.Idle,
                 (StateName.Idle, StateFactory.CreateIdleState(entity)),
                 (StateName.Move, StateFactory.CreateMoveState(entity, 0.1f)),
-                (StateName.Patrol, StateFactory.CreatePatrolState(entity, 0.1f)),
+                (StateName.Patrol, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreatePatrolSequence(entity, 0.1f))),
                 (StateName.Attack, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateAttackSequence(entity, 0.1f, _attackingDistance))),
                 (StateName.Hold, StateFactory.CreateHoldState(entity, _attackingDistance)),
                 (StateName.Follow, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateFollowSequence(entity, _stoppingDistance)))

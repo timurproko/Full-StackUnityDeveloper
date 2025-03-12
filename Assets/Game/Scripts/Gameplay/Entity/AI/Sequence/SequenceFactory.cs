@@ -22,5 +22,12 @@ namespace Game.Gameplay
                 new FollowNode(entity, stoppingDistance)
             );
         }
+        
+        public static BehaviourNodeSequence CreatePatrolSequence(IEntity entity, float stoppingDistance)
+        {
+            return new BehaviourNodeSequence(
+                new PatrolNode(entity, stoppingDistance)
+            );
+        }
     }
 }
