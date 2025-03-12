@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public sealed class FollowTargetUseCase
+    public sealed class FollowUseCase
     {
         public static bool Follow(in IEntity entity, in IEntity target, in float stoppingDistance)
         {

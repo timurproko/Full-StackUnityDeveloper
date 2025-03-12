@@ -33,9 +33,9 @@ namespace Game.Gameplay
                 (StateName.Idle, StateFactory.CreateIdleState(entity)),
                 (StateName.Move, StateFactory.CreateMoveState(entity, 0.1f)),
                 (StateName.Patrol, StateFactory.CreatePatrolState(entity, 0.1f)),
-                (StateName.Attack, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateAttackSequence(entity, _stoppingDistance, _attackingDistance))),
+                (StateName.Attack, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateAttackSequence(entity, 0.1f, _attackingDistance))),
                 (StateName.Hold, StateFactory.CreateHoldState(entity, _attackingDistance)),
-                (StateName.Follow, StateFactory.CreateChaseState(entity, _stoppingDistance))
+                (StateName.Follow, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateFollowSequence(entity, _stoppingDistance)))
             );
         }
     }

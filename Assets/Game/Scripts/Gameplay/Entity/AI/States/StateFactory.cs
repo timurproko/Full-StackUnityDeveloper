@@ -18,7 +18,7 @@ namespace Game.Gameplay
         public static IState CreateMoveState(IEntity entity, float stoppingDistance)
         {
             return new BaseState(
-                onUpdate: _ => { MoveToPointUseCase.Move(entity, stoppingDistance); });
+                onUpdate: _ => { MoveToUseCase.Move(entity, stoppingDistance); });
         }
 
         public static IState CreatePatrolState(IEntity entity, float stoppingDistance)
@@ -33,9 +33,9 @@ namespace Game.Gameplay
                 onUpdate: _ =>
                 {
                     IEntity target = entity.GetTarget().Value;
-                    LookTargetUseCase.LookAt(entity, target);
+                    LookAtUseCase.LookAt(entity, target);
                     AttackTargetUseCase.Attack(entity, target, attackingDistance);
-                    FollowTargetUseCase.Follow(entity, target, stoppingDistance);
+                    FollowUseCase.Follow(entity, target, stoppingDistance);
                 });
         }
 
@@ -45,7 +45,7 @@ namespace Game.Gameplay
                 onUpdate: _ =>
                 {
                     IEntity target = entity.GetTarget().Value;
-                    LookTargetUseCase.LookAt(entity, target);
+                    LookAtUseCase.LookAt(entity, target);
                     AttackTargetUseCase.Attack(entity, target, attackingDistance);
                 });
         }
@@ -56,7 +56,7 @@ namespace Game.Gameplay
                 onUpdate: _ =>
                 {
                     IEntity target = entity.GetTarget().Value;
-                    FollowTargetUseCase.Follow(entity, target, stoppingDistance);
+                    FollowUseCase.Follow(entity, target, stoppingDistance);
                 });
         }
 

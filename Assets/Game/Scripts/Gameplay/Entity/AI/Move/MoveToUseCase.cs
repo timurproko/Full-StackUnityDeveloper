@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public static class MoveToPointUseCase
+    public static class MoveToUseCase
     {
         public static bool Move(in IEntity entity, float stoppingDistance)
         {

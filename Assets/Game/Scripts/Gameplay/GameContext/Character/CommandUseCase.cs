@@ -7,8 +7,8 @@ namespace Game.Gameplay
     {
         public static void Stop(IEntity entity)
         {
-            entity.GetStateMachine().ChangeState(StateName.Idle);
             PatrolUseCase.ClearWaypoints(entity);
+            entity.GetStateMachine().ChangeState(StateName.Idle);
         }
 
         public static void Hold(IEntity entity, bool additive)
@@ -36,6 +36,7 @@ namespace Game.Gameplay
 
         public static void Follow(IEntity entity, RaycastHit hitPoint, bool additive)
         {
+            entity.GetMovePoint().Value = hitPoint.point;
             entity.GetStateMachine().ChangeState(StateName.Follow);
         }
     }
