@@ -30,12 +30,15 @@ namespace Game.Gameplay
         private IStateMachine<StateName> CreateStateMachine(IEntity entity)
         {
             return new StateMachine<StateName>(StateName.Idle,
-                (StateName.Idle, StateFactory.CreateIdleState(entity)),
-                (StateName.Move, StateFactory.CreateMoveState(entity, 0.1f)),
-                (StateName.Patrol, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreatePatrolSequence(entity, 0.1f))),
-                (StateName.Attack, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateAttackSequence(entity, 0.1f, _attackingDistance))),
-                (StateName.Hold, StateFactory.CreateHoldState(entity, _attackingDistance)),
-                (StateName.Follow, StateFactory.CreateBehaviourTreeState(SequenceFactory.CreateFollowSequence(entity, _stoppingDistance)))
+                (StateName.Idle, StateMachineFactory.CreateIdleState(entity)),
+                (StateName.Move, StateMachineFactory.CreateMoveState(entity, 0.1f)),
+                (StateName.Patrol, StateMachineFactory.CreateBehaviourTreeState(
+                    BehaviourTreeFactory.CreatePatrolSequence(entity, 0.1f, _attackingDistance))),
+                (StateName.Attack, StateMachineFactory.CreateBehaviourTreeState(
+                    BehaviourTreeFactory.CreateAttackSequence(entity, 0.1f, _attackingDistance))),
+                (StateName.Hold, StateMachineFactory.CreateHoldState(entity, _attackingDistance)),
+                (StateName.Follow, StateMachineFactory.CreateBehaviourTreeState(
+                    BehaviourTreeFactory.CreateFollowSequence(entity, _stoppingDistance)))
             );
         }
     }

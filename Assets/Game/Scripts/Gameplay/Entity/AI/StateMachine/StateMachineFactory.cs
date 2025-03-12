@@ -5,9 +5,9 @@ using IState = Modules.FSM.IState;
 
 namespace Game.Gameplay
 {
-    public static class StateFactory
+    public static class StateMachineFactory
     {
-        public static IState CreateIdleState(IEntity entity)
+        public static IState CreateIdleState(IEntity _)
         {
             return new BaseState(
                 onUpdate: _ => { });
