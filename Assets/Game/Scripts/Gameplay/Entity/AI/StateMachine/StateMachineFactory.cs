@@ -36,28 +36,6 @@ namespace Game.Gameplay
                 onUpdate: _ => { PatrolUseCase.PatrolWaypoints(entity, stoppingDistance); });
         }
 
-        public static IState CreateAttackState(IEntity entity, float attackingDistance, float stoppingDistance)
-        {
-            return new BaseState(
-                onUpdate: _ =>
-                {
-                    IEntity target = entity.GetTarget().Value;
-                    LookAtUseCase.LookAt(entity, target);
-                    AttackTargetUseCase.Attack(entity, target, attackingDistance);
-                    FollowUseCase.Follow(entity, target, stoppingDistance);
-                });
-        }
-
-        public static IState CreateFollowState(IEntity entity, float stoppingDistance)
-        {
-            return new BaseState(
-                onUpdate: _ =>
-                {
-                    IEntity target = entity.GetTarget().Value;
-                    FollowUseCase.Follow(entity, target, stoppingDistance);
-                });
-        }
-
         public static IState CreateBehaviourTreeState(IBehaviourNode behaviourTree)
         {
             return new BaseState(

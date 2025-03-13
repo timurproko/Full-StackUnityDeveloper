@@ -9,7 +9,7 @@ namespace Game.Gameplay
             float attackingDistance)
         {
             return new BehaviourNodeSequence(
-                new MoveToNode(entity, stoppingDistance),
+                new MoveToPointNode(entity, stoppingDistance),
                 new LookAtNode(entity),
                 new AttackNode(entity, attackingDistance)
             );
@@ -18,28 +18,23 @@ namespace Game.Gameplay
         public static IBehaviourNode CreateFollowSequence(IEntity entity, float stoppingDistance)
         {
             return new BehaviourNodeSequence(
-                new MoveToNode(entity, stoppingDistance),
+                new MoveToPointNode(entity, stoppingDistance),
                 new LookAtNode(entity),
                 new FollowNode(entity, stoppingDistance)
             );
         }
-
-        public static IBehaviourNode CreatePatrolSequence(IEntity entity, float stoppingDistance,
-            float attackingDistance)
+        
+        public static IBehaviourNode CreateDefaultSequence(IEntity entity, float stoppingDistance, float attackingDistance)
         {
             return new BehaviourNodeSelector(
-                new BehaviourNodeSequence(
-                    new BehaviourNodeCondition(() => entity.GetTarget().Value == null),
-                    new PatrolNode(entity, stoppingDistance)
-                ),
                 new BehaviourNodeAborter(
                     new BehaviourNodeSequence(
-                        new BehaviourNodeCondition(() => entity.GetTarget().Value != null),
-                        new LookAtNode(entity),
-                        new AttackNode(entity, attackingDistance)
+                        new BehaviourNodeCondition(() => entity.GetTarget().Value == null),
+                        new MoveToBaseNode(entity, stoppingDistance)
                     ),
-                    () => !LookAtUseCase.LookAt(entity, entity.GetTarget().Value)
-                )
+                    () => entity.GetTarget().Value != null 
+                ),
+                new HoldNode(entity, stoppingDistance, attackingDistance)
             );
         }
     }

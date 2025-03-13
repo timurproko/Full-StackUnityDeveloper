@@ -3,12 +3,12 @@ using Modules.BehaviourTree;
 
 namespace Game.Gameplay
 {
-    public class MoveToNode : BehaviourNode
+    public class MoveToPointNode : BehaviourNode
     {
         private readonly IEntity _entity;
         private readonly float _stoppingDistance;
 
-        public MoveToNode(IEntity entity, float stoppingDistance)
+        public MoveToPointNode(IEntity entity, float stoppingDistance)
         {
             _entity = entity;
             _stoppingDistance = stoppingDistance;
