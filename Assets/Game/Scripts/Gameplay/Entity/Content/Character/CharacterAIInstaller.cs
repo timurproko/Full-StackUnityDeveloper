@@ -16,7 +16,7 @@ namespace Game.Gameplay
             _sensorInstaller.Install(entity);
 
             entity.AddTarget(new ReactiveVariable<IEntity>());
-            entity.AddMovePoint(new ReactiveVariable<Vector3>());
+            entity.AddMovePosition(new ReactiveVariable<Vector3>(entity.GetTransform().position));
             entity.AddWaypoints(new Vector3[] { });
             entity.AddWaypointIndex(new ReactiveInt());
 
@@ -29,10 +29,10 @@ namespace Game.Gameplay
 
         private IStateMachine<StateName> CreateStateMachine(IEntity entity)
         {
-            return new StateMachine<StateName>(StateName.Idle,
-                (StateName.Idle, StateMachineFactory.CreateBehaviourTreeState(
+            return new StateMachine<StateName>(StateName.Stop,
+                (StateName.Stop, StateMachineFactory.CreateBehaviourTreeState(
                     BehaviourTreeFactory.CreateDefaultSequence(entity, _stoppingDistance, _attackingDistance))),
-                (StateName.Move, StateMachineFactory.CreateMoveState(entity, _stoppingDistance)),
+                (StateName.Move, StateMachineFactory.CreateMoveState(entity, 0.1f)),
                 (StateName.Patrol, StateMachineFactory.CreatePatrolState(entity, _stoppingDistance)),
                 (StateName.Attack, StateMachineFactory.CreateBehaviourTreeState(
                     BehaviourTreeFactory.CreateAttackSequence(entity, _stoppingDistance, _attackingDistance))),

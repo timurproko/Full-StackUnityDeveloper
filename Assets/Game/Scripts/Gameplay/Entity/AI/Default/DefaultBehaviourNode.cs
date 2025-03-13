@@ -1,17 +1,15 @@
 using Atomic.Entities;
 using Modules.BehaviourTree;
-using UnityEngine;
 
 namespace Game.Gameplay
 {
-    public class HoldNode : BehaviourNode
+    public class DefaultBehaviourNode : BehaviourNode
     {
         private readonly IEntity _entity;
         private readonly float _stoppingDistance;
         private readonly float _attackingDistance;
-        private readonly Vector3 initialPoint;
 
-        public HoldNode(IEntity entity, float stoppingDistance, float attackingDistance)
+        public DefaultBehaviourNode(IEntity entity, float stoppingDistance, float attackingDistance)
         {
             _entity = entity;
             _stoppingDistance = stoppingDistance;

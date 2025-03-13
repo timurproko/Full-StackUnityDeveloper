@@ -2,7 +2,7 @@ namespace Game.Gameplay
 {
     public enum StateName
     {
-        Idle = 0,
+        Stop = 0,
         Move = 1,
         Patrol = 2,
         Attack = 3,

@@ -12,7 +12,7 @@ namespace Game.Gameplay
 
         public static bool Move(in IEntity entity, float stoppingDistance, out bool reached)
         {
-            return MoveToPosition(entity, stoppingDistance, entity.GetMovePoint().Value, out reached);
+            return MoveToPosition(entity, stoppingDistance, entity.GetMovePosition().Value, out reached);
         }
 
         public static bool MoveToBase(in IEntity entity, float stoppingDistance, Vector3 targetPosition)

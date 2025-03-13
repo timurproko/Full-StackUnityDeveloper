@@ -11,10 +11,11 @@ namespace Game.Gameplay
         [SerializeField] private float _radius;
         [SerializeField] private Transform _center;
         [SerializeField] private int _bufferSize = 32;
+        [SerializeField] private Color _color = Color.blue;
 
         public void Install(IEntity entity)
         {
-            entity.AddBehaviour(new TargetSensor(_layerMask, _center, _radius, _bufferSize, other => other.HasCharacterTag()));
+            entity.AddBehaviour(new TargetSensor(_layerMask, _center, _radius, _bufferSize, _color, other => other.HasCharacterTag()));
         }
     }
 }

@@ -8,13 +8,11 @@ namespace Game.Gameplay
     {
         private readonly IEntity _entity;
         private readonly float _stoppingDistance;
-        private readonly Vector3 initialPoint;
 
         public MoveToBaseNode(IEntity entity, float stoppingDistance)
         {
             _entity = entity;
             _stoppingDistance = stoppingDistance;
-            initialPoint = _entity.GetTransform().position;
         }
 
         protected override BehaviourResult OnUpdate(float deltaTime)
@@ -26,6 +24,7 @@ namespace Game.Gameplay
 
             if (target == null)
             {
+                var initialPoint = _entity.GetMovePosition().Value;
                 MoveToUseCase.MoveToBase(_entity, _stoppingDistance, initialPoint);
                 return BehaviourResult.RUNNING;
             }

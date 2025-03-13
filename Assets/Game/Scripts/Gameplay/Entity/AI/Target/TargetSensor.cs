@@ -12,6 +12,7 @@ namespace Game.Gameplay
         private readonly float _radius;
         private readonly int _bufferSize;
         private readonly Predicate<IEntity> _predicate;
+        private Color _color;
 
         private IReactiveVariable<IEntity> _target;
 
@@ -20,14 +21,15 @@ namespace Game.Gameplay
             Transform center,
             float radius,
             int bufferSize,
-            Predicate<IEntity> predicate
-        )
+            Color color, 
+            Predicate<IEntity> predicate)
         {
             _layerMask = layerMask;
             _center = center;
             _radius = radius;
             _bufferSize = bufferSize;
             _predicate = predicate;
+            _color = color;
         }
 
         public void Init(in IEntity entity)
@@ -54,7 +56,7 @@ namespace Game.Gameplay
                 return;
 
             Color prevColor = Gizmos.color;
-            Gizmos.color = Color.blue;
+            Gizmos.color = _color;
             Gizmos.DrawWireSphere(_center.position, _radius);
             Gizmos.color = prevColor;
         }

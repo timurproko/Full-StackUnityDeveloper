@@ -7,12 +7,6 @@ namespace Game.Gameplay
 {
     public static class StateMachineFactory
     {
-        public static IState CreateIdleState(IEntity entity)
-        {
-            return new BaseState(
-                onUpdate: _ => { });
-        }
-
         public static IState CreateMoveState(IEntity entity, float stoppingDistance)
         {
             return new BaseState(
