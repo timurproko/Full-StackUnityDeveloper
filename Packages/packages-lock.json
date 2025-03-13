@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.timurproko.mytools": {
-      "version": "file:D:/Github/MyUnityTools",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.collab-proxy": {
       "version": "2.4.4",
       "depth": 0,
