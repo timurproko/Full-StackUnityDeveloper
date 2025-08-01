@@ -154,5 +154,11 @@ namespace SampleGame
             return point.x >= minX && point.x <= maxX &&
                    point.z >= minZ && point.z <= maxZ;
         }
+        
+        public bool Contains(Unit unit)
+        {
+            return _selectedUnits.Contains(unit);
+        }
+
     }
 }

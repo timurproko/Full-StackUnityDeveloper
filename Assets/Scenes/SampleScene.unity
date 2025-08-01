@@ -2966,6 +2966,7 @@ GameObject:
   - component: {fileID: 1770952589}
   - component: {fileID: 1770952588}
   - component: {fileID: 1770952590}
+  - component: {fileID: 1770952591}
   m_Layer: 0
   m_Name: '[Render]'
   m_TagString: Untagged
@@ -3016,6 +3017,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: 7d90a46116447ee4cb6db9f73c7fee31, type: 2}
   _unit: {fileID: 1710057297}
+  _selection: {fileID: 1710057296}
+--- !u!114 &1770952591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770952587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372646b11b144ff3b1688e4c7767bb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 3c67209197e7026469816fe9ffeb95ec, type: 2}
+  _selection: {fileID: 1710057296}
 --- !u!1 &1910947751
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,9 +28,9 @@ Material:
     - _BorderWidth: 2
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0.14827293, a: 0.19607843}
-    - _EndPoint: {r: 691, g: 219.62494, b: 0, a: 0}
+    - _EndPoint: {r: 1044.0001, g: 591.6249, b: 0, a: 0}
     - _RectMax: {r: 0.7116789, g: 0.6231234, b: 0, a: 0}
     - _RectMin: {r: 0.41032326, g: 0.3370517, b: 0, a: 0}
-    - _StartPoint: {r: 1110.0001, g: 703.62494, b: 0, a: 0}
+    - _StartPoint: {r: 1132, g: 701.62494, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

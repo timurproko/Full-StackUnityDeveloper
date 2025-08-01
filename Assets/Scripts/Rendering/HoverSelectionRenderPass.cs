@@ -8,16 +8,21 @@ namespace SampleGame
     {
         private readonly Material _material;
         private readonly UnitHover _unit;
+        private readonly UnitSelectionManager _selection;
 
-        public HoverSelectionRenderPass(Material material, UnitHover unit)
+        public HoverSelectionRenderPass(Material material, UnitHover unit, UnitSelectionManager selection)
         {
             _material = material;
             _unit = unit;
+            _selection = selection;
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             if (!_unit || !_unit.Target || !_material)
+                return;
+            
+            if (_selection != null && _selection.Contains(_unit.Target))
                 return;
             
             Vector3 position = _unit.Target.Position;

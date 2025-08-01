@@ -4,18 +4,16 @@ using UnityEngine.Rendering.Universal;
 
 namespace SampleGame
 {
-    public class HoverSelectionRenderPassInjector : MonoBehaviour
+    public class unitSelectionRenderPassInjector : MonoBehaviour
     {
         [SerializeField] private Material _material;
-        [SerializeField] private UnitHover _unit;
         [SerializeField] private UnitSelectionManager _selection;
-
-
-        private HoverSelectionRenderPass _renderPass;
+        
+        private UnitSelectionRenderPass _renderPass;
 
         private void Awake()
         {
-            _renderPass = new HoverSelectionRenderPass(_material, _unit, _selection)
+            _renderPass = new UnitSelectionRenderPass(_material, _selection)
             {
                 renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
             };

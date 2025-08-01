@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HoverSelection
-  m_Shader: {fileID: 4800000, guid: 9aa1fe138b0e426b9c03a24e46cab641, type: 3}
+  m_Name: UnitSelection
+  m_Shader: {fileID: 4800000, guid: d00718cfc4064de1b8550591a101efd2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -25,14 +25,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Dash: 0.3
-    - _Radius: 2
-    - _Scale: 2
-    - _Speed: 1
     - _Thickness: 0.1
-    m_Colors:
-    - _Center: {r: 2.81, g: 0, b: -3.84, a: 0}
-    - _Color: {r: 0, g: 0, b: 1, a: 1}
-    - _Pos: {r: 1, g: 1, b: 0, a: 0}
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
