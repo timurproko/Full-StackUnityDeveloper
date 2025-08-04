@@ -1,21 +1,6 @@
 {
   "dependencies": {
-    "com.singularitygroup.hotreload": {
-      "version": "file:com.singularitygroup.hotreload",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.unitywebrequest": "1.0.0"
-      }
-    },
-    "com.timurproko.mytools": {
-      "version": "file:D:/Github/MyUnityTools",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
-    "com.unity.burst": {
+      "com.unity.burst": {
       "version": "1.8.23",
       "depth": 2,
       "source": "registry",

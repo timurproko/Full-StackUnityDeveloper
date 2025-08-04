@@ -24,7 +24,6 @@ namespace SampleGame
             _material = material;
             _selection = selection;
             _unitDataBuffer = new ComputeBuffer(_maxUnits, System.Runtime.InteropServices.Marshal.SizeOf<UnitData>());
-
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)

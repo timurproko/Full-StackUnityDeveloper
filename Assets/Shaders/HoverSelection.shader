@@ -26,6 +26,7 @@ Shader "Custom/HoverSelection"
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment Frag
+            #pragma multi_compile_instancing
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "UnitSelection.hlsl"
