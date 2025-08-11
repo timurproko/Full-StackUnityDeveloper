@@ -55,19 +55,18 @@ Shader "Custom/UnitSelection"
                 float4 color: TEXCOORD3;
             };
 
+            static const float2 quadVerts[6] = {
+                float2(-1, -1),
+                float2(1, -1),
+                float2(1, 1),
+                float2(-1, -1),
+                float2(1, 1),
+                float2(-1, 1)
+            };
 
             Varyings Vert(uint vertexID : SV_VertexID, uint instanceID : SV_InstanceID)
             {
                 Varyings o;
-
-                float2 quadVerts[6] = {
-                    float2(-1, -1),
-                    float2(1, -1),
-                    float2(1, 1),
-                    float2(-1, -1),
-                    float2(1, 1),
-                    float2(-1, 1)
-                };
 
                 UnitData data = _UnitSelectionBuffer[instanceID];
                 float2 localPos = quadVerts[vertexID] * data.Scale;

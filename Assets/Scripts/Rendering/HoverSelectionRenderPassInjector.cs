@@ -9,13 +9,13 @@ namespace SampleGame
         [SerializeField] private Material _material;
         [SerializeField] private UnitHover _unit;
         [SerializeField] private UnitSelectionManager _selection;
-
+        [SerializeField] private TeamsConfig _teams;
 
         private HoverSelectionRenderPass _renderPass;
 
         private void Awake()
         {
-            _renderPass = new HoverSelectionRenderPass(_material, _unit, _selection)
+            _renderPass = new HoverSelectionRenderPass(_material, _unit, _selection, _teams)
             {
                 renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
             };

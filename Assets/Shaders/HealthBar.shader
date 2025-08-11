@@ -61,21 +61,21 @@ Shader "Custom/HealthBar"
                 float max_health: TEXCOORD4;
             };
 
+            static const float2 quadVerts[6] = {
+                float2(-1, -1),
+                float2(1, -1),
+                float2(1, 1),
+                float2(-1, -1),
+                float2(1, 1),
+                float2(-1, 1)
+            };
+
             Varyings Vert(uint vertexID : SV_VertexID, uint instanceID : SV_InstanceID)
             {
                 Varyings o;
-
-                float2 quadVerts[6] = {
-                    float2(-1, -1),
-                    float2(1, -1),
-                    float2(1, 1),
-                    float2(-1, -1),
-                    float2(1, 1),
-                    float2(-1, 1)
-                };
-
-                float3 right = normalize(UNITY_MATRIX_V[0].xyz); // camera right
-                float3 up = normalize(UNITY_MATRIX_V[1].xyz); // camera up
+                
+                float3 right = normalize(UNITY_MATRIX_V[0].xyz);
+                float3 up = normalize(UNITY_MATRIX_V[1].xyz);
 
                 UnitData data = _HealthBarBuffer[instanceID];
 

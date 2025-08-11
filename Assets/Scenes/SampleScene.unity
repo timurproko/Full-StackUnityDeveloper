@@ -3019,6 +3019,7 @@ MonoBehaviour:
   _material: {fileID: 2100000, guid: 7d90a46116447ee4cb6db9f73c7fee31, type: 2}
   _unit: {fileID: 1710057297}
   _selection: {fileID: 1710057296}
+  _teams: {fileID: 11400000, guid: 39406c4b6dbfd4909a8dcbd397a33f74, type: 2}
 --- !u!114 &1770952591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3033,6 +3034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: 3c67209197e7026469816fe9ffeb95ec, type: 2}
   _selection: {fileID: 1710057296}
+  _teams: {fileID: 11400000, guid: 39406c4b6dbfd4909a8dcbd397a33f74, type: 2}
 --- !u!114 &1770952592
 MonoBehaviour:
   m_ObjectHideFlags: 0

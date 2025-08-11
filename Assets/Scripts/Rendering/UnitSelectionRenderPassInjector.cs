@@ -4,16 +4,17 @@ using UnityEngine.Rendering.Universal;
 
 namespace SampleGame
 {
-    public class unitSelectionRenderPassInjector : MonoBehaviour
+    public class UnitSelectionRenderPassInjector : MonoBehaviour
     {
         [SerializeField] private Material _material;
         [SerializeField] private UnitSelectionManager _selection;
+        [SerializeField] private TeamsConfig _teams;
         
         private UnitSelectionRenderPass _renderPass;
 
         private void Awake()
         {
-            _renderPass = new UnitSelectionRenderPass(_material, _selection)
+            _renderPass = new UnitSelectionRenderPass(_material, _selection, _teams)
             {
                 renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
             };

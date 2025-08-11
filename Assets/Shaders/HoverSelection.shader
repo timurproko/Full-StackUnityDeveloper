@@ -31,12 +31,18 @@ Shader "Custom/HoverSelection"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "UnitSelection.hlsl"
 
-            float4 _Color;
             float _Thickness;
             float _Dash;
             float _Speed;
-            float _Scale;
-            float3 _Position;
+
+            struct UnitData
+            {
+                float3 Position;
+                float Scale;
+                float4 Color;
+            };
+
+            StructuredBuffer<UnitData> _UnitSelectionBuffer;
 
             struct MeshData
             {
@@ -48,51 +54,57 @@ Shader "Custom/HoverSelection"
             {
                 float4 positionCS : SV_POSITION;
                 float2 uv : TEXCOORD0;
+                float3 position : TEXCOORD1;
+                float scale : TEXCOORD2;
+                float4 color : COLOR0;
             };
 
+            static const float2 quadVerts[6] = {
+                float2(-1, -1),
+                float2(1, -1),
+                float2(1, 1),
+                float2(-1, -1),
+                float2(1, 1),
+                float2(-1, 1)
+            };
 
-            Varyings Vert(uint vertexID : SV_VertexID)
+            Varyings Vert(uint vertexID : SV_VertexID, uint instanceID : SV_InstanceID)
             {
                 Varyings o;
 
-                float2 quadVerts[6] = {
-                    float2(-1, -1), // bottom-left
-                    float2(1, -1), // bottom-right
-                    float2(1, 1), // top-right
-                    float2(-1, -1), // bottom-left
-                    float2(1, 1), // top-right
-                    float2(-1, 1) // top-left
-                };
-
-                float2 localPos = quadVerts[vertexID] * _Scale;
-                float3 worldPos = _Position + float3(localPos.x, 0, localPos.y);
+                UnitData data = _UnitSelectionBuffer[instanceID];
+                float2 localPos = quadVerts[vertexID] * data.Scale;
+                float3 worldPos = data.Position + float3(localPos.x, 0, localPos.y);
                 float4 positionWS = float4(worldPos, 1);
-                
+
                 o.positionCS = TransformWorldToHClip(positionWS.xyz);
                 o.uv = quadVerts[vertexID] * 0.5 + 0.5;
 
+                o.position = data.Position;
+                o.scale = data.Scale;
+                o.color = data.Color;
+                
                 return o;
             }
-            
+
             float4 Frag(Varyings i) : SV_Target
             {
-                float2 localPos = (i.uv * 2.0 - 1.0) * _Scale;
-                float3 worldPos = _Position + float3(localPos.x, 0, localPos.y);
+                float2 localPos = (i.uv * 2.0 - 1.0) * i.scale;
+                float3 worldPos = i.position + float3(localPos.x, 0, localPos.y);
 
-                float radius = max(_Scale - _Thickness, 0.0);
-                float worldDashLength = _Dash;
+                float radius = max(i.scale - _Thickness, 0.0);
                 float circumference = PI * radius;
-                float dash = circumference / worldDashLength;
-                float angleSpeed = (_Speed / dash);
+                float uniformDash = circumference / _Dash;
+                float uniformSpeed = (_Speed / uniformDash);
 
                 return DrawHoverCircle(
                     worldPos,
-                    _Position,
+                    i.position,
                     radius,
                     _Thickness,
-                    _Color,
-                    dash,
-                    angleSpeed
+                    i.color,
+                    uniformDash,
+                    uniformSpeed
                 );
             }
             ENDHLSL

@@ -48,21 +48,21 @@ Shader "Custom/BoxSelection"
                 float2 uv : TEXCOORD0;
             };
 
+            static const float2 positions[3] = {
+                float2(-1, -1),
+                float2(3, -1),
+                float2(-1, 3)
+            };
+
+            static const float2 uvs[3] = {
+                float2(0, 0),
+                float2(2, 0),
+                float2(0, 2)
+            };
+
             Interpolators Vert(uint vertexID : SV_VertexID)
             {
                 Interpolators o;
-
-                float2 positions[3] = {
-                    float2(-1, -1),
-                    float2(3, -1),
-                    float2(-1, 3)
-                };
-
-                float2 uvs[3] = {
-                    float2(0, 0),
-                    float2(2, 0),
-                    float2(0, 2)
-                };
 
                 o.positionCS = float4(positions[vertexID], 0, 1);
                 o.uv = uvs[vertexID];
@@ -84,14 +84,11 @@ Shader "Custom/BoxSelection"
                 float2 minRect = clamp(min(startPt, endPt), minScreen, maxScreen);
                 float2 maxRect = clamp(max(startPt, endPt), minScreen, maxScreen);
 
-                // Inside selection rectangle?
                 bool insideRect = all(screenPos >= minRect) && all(screenPos <= maxRect);
 
-                // Inside inner rect (excluding border)?
                 bool insideInner = all(screenPos >= (minRect + _BorderWidth)) &&
                     all(screenPos <= (maxRect - _BorderWidth));
 
-                // Border is inside, but not insideInner
                 bool isBorder = insideRect && !insideInner;
 
                 float4 borderColor = float4(_Color.rgb, 1.0);
